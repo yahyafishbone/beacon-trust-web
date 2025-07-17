@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
@@ -12,6 +13,7 @@ const Navigation = () => {
     { name: "Services", href: "/services" },
     { name: "Why BeaconTrust", href: "/why-beacontrust" },
     { name: "Client Segments", href: "/client-segments" },
+    { name: "Ongoing Projects", href: "/ongoing-projects" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ];
