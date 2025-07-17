@@ -1,20 +1,19 @@
-
-import React, { useState } from 'react';
-import { Menu, X, Phone, Mail } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import { Menu, X, Phone, Mail } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Why BeaconTrust', href: '/why-beacontrust' },
-    { name: 'Client Segments', href: '/client-segments' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/contact' },
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Why BeaconTrust", href: "/why-beacontrust" },
+    { name: "Client Segments", href: "/client-segments" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contact", href: "/contact" },
   ];
 
   const isActive = (href: string) => location.pathname === href;
@@ -22,7 +21,7 @@ const Navigation = () => {
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
       {/* Top bar */}
-      <div className="bg-blue-900 text-white py-2">
+      {/* <div className="bg-blue-900 text-white py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center text-sm">
             <div className="flex space-x-4">
@@ -40,12 +39,17 @@ const Navigation = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Main navigation */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
+            {/* <img
+              className="h-20 w-24 mr-4 rounded-sm"
+              src="/logo.png"
+              alt="logo"
+            /> */}
             <Link to="/" className="text-2xl font-bold text-blue-900">
               BeaconTrust
             </Link>
@@ -58,7 +62,9 @@ const Navigation = () => {
                 key={item.name}
                 to={item.href}
                 className={`text-gray-600 hover:text-blue-900 px-3 py-2 text-sm font-medium transition-colors ${
-                  isActive(item.href) ? 'text-blue-900 border-b-2 border-blue-900' : ''
+                  isActive(item.href)
+                    ? "text-blue-900 border-b-2 border-blue-900"
+                    : ""
                 }`}
               >
                 {item.name}
@@ -81,7 +87,11 @@ const Navigation = () => {
               onClick={() => setIsOpen(!isOpen)}
               className="text-gray-600 hover:text-blue-900 p-2"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
           </div>
         </div>
@@ -95,7 +105,7 @@ const Navigation = () => {
                   key={item.name}
                   to={item.href}
                   className={`text-gray-600 hover:text-blue-900 px-3 py-2 text-sm font-medium ${
-                    isActive(item.href) ? 'text-blue-900 bg-blue-50' : ''
+                    isActive(item.href) ? "text-blue-900 bg-blue-50" : ""
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
