@@ -4,8 +4,14 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Search, FileText, Building, DollarSign, Compass, Home, CheckCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Services = () => {
+  const heroAnimation = useScrollAnimation();
+  const servicesAnimation = useScrollAnimation();
+  const processAnimation = useScrollAnimation();
+  const differenceAnimation = useScrollAnimation();
+
   const serviceCategories = [
     {
       icon: Search,
@@ -76,7 +82,10 @@ const Services = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <div 
+            ref={heroAnimation.elementRef}
+            className={`text-center animate-on-scroll ${heroAnimation.isVisible ? 'visible' : ''}`}
+          >
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
               Comprehensive Real Estate 
               <span className="text-green-400"> Services</span>
@@ -93,7 +102,10 @@ const Services = () => {
       {/* Services Grid */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div 
+            ref={servicesAnimation.elementRef}
+            className={`grid grid-cols-1 lg:grid-cols-2 gap-8 animate-on-scroll ${servicesAnimation.isVisible ? 'visible' : ''}`}
+          >
             {serviceCategories.map((category, index) => {
               const IconComponent = category.icon;
               return (
@@ -122,49 +134,54 @@ const Services = () => {
       {/* Process Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Our Proven Process
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We've streamlined the real estate process to make it as smooth and transparent as possible.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                step: '01',
-                title: 'Consultation',
-                description: 'We understand your needs, budget, and timeline through detailed consultation.'
-              },
-              {
-                step: '02',
-                title: 'Research & Due Diligence',
-                description: 'Comprehensive market research and legal verification of all properties.'
-              },
-              {
-                step: '03',
-                title: 'Execution',
-                description: 'Professional handling of all processes from documentation to completion.'
-              },
-              {
-                step: '04',
-                title: 'Ongoing Support',
-                description: 'Continued support and management services as needed.'
-              }
-            ].map((step, index) => (
-              <div key={index} className="text-center relative">
-                <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                  {step.step}
+          <div 
+            ref={processAnimation.elementRef}
+            className={`animate-on-scroll ${processAnimation.isVisible ? 'visible' : ''}`}
+          >
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                Our Proven Process
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                We've streamlined the real estate process to make it as smooth and transparent as possible.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                {
+                  step: '01',
+                  title: 'Consultation',
+                  description: 'We understand your needs, budget, and timeline through detailed consultation.'
+                },
+                {
+                  step: '02',
+                  title: 'Research & Due Diligence',
+                  description: 'Comprehensive market research and legal verification of all properties.'
+                },
+                {
+                  step: '03',
+                  title: 'Execution',
+                  description: 'Professional handling of all processes from documentation to completion.'
+                },
+                {
+                  step: '04',
+                  title: 'Ongoing Support',
+                  description: 'Continued support and management services as needed.'
+                }
+              ].map((step, index) => (
+                <div key={index} className="text-center relative">
+                  <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                    {step.step}
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{step.title}</h3>
+                  <p className="text-gray-600">{step.description}</p>
+                  {index < 3 && (
+                    <ArrowRight className="hidden lg:block absolute top-8 -right-4 h-6 w-6 text-gray-400" />
+                  )}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
-                {index < 3 && (
-                  <ArrowRight className="hidden lg:block absolute top-8 -right-4 h-6 w-6 text-gray-400" />
-                )}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -172,38 +189,43 @@ const Services = () => {
       {/* Why Our Services Are Different */}
       <section className="py-20 bg-blue-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">
-              Why Our Services Are Different
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">100% Transparency</h3>
-              <p className="text-blue-100">
-                Every step is documented and communicated. No hidden processes or surprise costs.
-              </p>
+          <div 
+            ref={differenceAnimation.elementRef}
+            className={`animate-on-scroll ${differenceAnimation.isVisible ? 'visible' : ''}`}
+          >
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold mb-6">
+                Why Our Services Are Different
+              </h2>
             </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FileText className="h-8 w-8 text-white" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">100% Transparency</h3>
+                <p className="text-blue-100">
+                  Every step is documented and communicated. No hidden processes or surprise costs.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold mb-3">Legal Compliance</h3>
-              <p className="text-blue-100">
-                All our services meet or exceed legal requirements and industry best practices.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Home className="h-8 w-8 text-white" />
+              <div className="text-center">
+                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <FileText className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Legal Compliance</h3>
+                <p className="text-blue-100">
+                  All our services meet or exceed legal requirements and industry best practices.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold mb-3">End-to-End Support</h3>
-              <p className="text-blue-100">
-                From initial consultation to ongoing management, we're with you every step.
-              </p>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Home className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">End-to-End Support</h3>
+                <p className="text-blue-100">
+                  From initial consultation to ongoing management, we're with you every step.
+                </p>
+              </div>
             </div>
           </div>
         </div>

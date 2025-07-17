@@ -3,8 +3,15 @@ import React from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Target, Eye, Heart, Shield, Lightbulb, Users as UsersIcon, CheckCircle } from 'lucide-react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const About = () => {
+  const heroAnimation = useScrollAnimation();
+  const storyAnimation = useScrollAnimation();
+  const visionAnimation = useScrollAnimation();
+  const valuesAnimation = useScrollAnimation();
+  const differenceAnimation = useScrollAnimation();
+
   const values = [
     {
       icon: Shield,
@@ -35,7 +42,10 @@ const About = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <div 
+            ref={heroAnimation.elementRef}
+            className={`text-center animate-on-scroll ${heroAnimation.isVisible ? 'visible' : ''}`}
+          >
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
               Transforming Real Estate in Kenya with 
               <span className="text-green-400"> Trust and Transparency</span>
@@ -50,7 +60,10 @@ const About = () => {
       {/* Company Overview */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div 
+            ref={storyAnimation.elementRef}
+            className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center animate-on-scroll ${storyAnimation.isVisible ? 'visible' : ''}`}
+          >
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
@@ -99,7 +112,10 @@ const About = () => {
       {/* Vision and Mission */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div 
+            ref={visionAnimation.elementRef}
+            className={`grid grid-cols-1 lg:grid-cols-2 gap-12 animate-on-scroll ${visionAnimation.isVisible ? 'visible' : ''}`}
+          >
             {/* Vision */}
             <div className="bg-white rounded-2xl p-8 shadow-lg">
               <div className="flex items-center mb-6">
@@ -134,25 +150,30 @@ const About = () => {
       {/* Core Values */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Core Values</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              These principles guide everything we do and shape how we serve our clients.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => {
-              const IconComponent = value.icon;
-              return (
-                <div key={index} className="text-center group">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors">
-                    <IconComponent className="h-8 w-8 text-blue-600" />
+          <div 
+            ref={valuesAnimation.elementRef}
+            className={`animate-on-scroll ${valuesAnimation.isVisible ? 'visible' : ''}`}
+          >
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Core Values</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                These principles guide everything we do and shape how we serve our clients.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {values.map((value, index) => {
+                const IconComponent = value.icon;
+                return (
+                  <div key={index} className="text-center group">
+                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors">
+                      <IconComponent className="h-8 w-8 text-blue-600" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{value.title}</h3>
+                    <p className="text-gray-600">{value.description}</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{value.title}</h3>
-                  <p className="text-gray-600">{value.description}</p>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -160,33 +181,38 @@ const About = () => {
       {/* What Sets Us Apart */}
       <section className="py-20 bg-blue-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">What Sets Us Apart</h2>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              We're not just another real estate company. Here's what makes BeaconTrust different.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <CheckCircle className="h-8 w-8 text-green-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Full Transparency</h3>
-              <p className="text-blue-100">
-                No hidden fees, no surprises. Every cost is disclosed upfront, and you're involved in every decision.
+          <div 
+            ref={differenceAnimation.elementRef}
+            className={`animate-on-scroll ${differenceAnimation.isVisible ? 'visible' : ''}`}
+          >
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold mb-6">What Sets Us Apart</h2>
+              <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+                We're not just another real estate company. Here's what makes BeaconTrust different.
               </p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <Shield className="h-8 w-8 text-green-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Complete Due Diligence</h3>
-              <p className="text-blue-100">
-                We verify every property through official registries and conduct thorough legal checks.
-              </p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <UsersIcon className="h-8 w-8 text-green-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Client-Centric Approach</h3>
-              <p className="text-blue-100">
-                Your success is our success. We tailor our services to meet your specific needs and budget.
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                <CheckCircle className="h-8 w-8 text-green-400 mb-4" />
+                <h3 className="text-xl font-semibold mb-3">Full Transparency</h3>
+                <p className="text-blue-100">
+                  No hidden fees, no surprises. Every cost is disclosed upfront, and you're involved in every decision.
+                </p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                <Shield className="h-8 w-8 text-green-400 mb-4" />
+                <h3 className="text-xl font-semibold mb-3">Complete Due Diligence</h3>
+                <p className="text-blue-100">
+                  We verify every property through official registries and conduct thorough legal checks.
+                </p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                <UsersIcon className="h-8 w-8 text-green-400 mb-4" />
+                <h3 className="text-xl font-semibold mb-3">Client-Centric Approach</h3>
+                <p className="text-blue-100">
+                  Your success is our success. We tailor our services to meet your specific needs and budget.
+                </p>
+              </div>
             </div>
           </div>
         </div>

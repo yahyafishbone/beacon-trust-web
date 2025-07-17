@@ -3,8 +3,13 @@ import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Phone, Mail, MapPin, Clock, Send, Facebook, Instagram, Twitter } from 'lucide-react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Contact = () => {
+  const heroAnimation = useScrollAnimation();
+  const contactAnimation = useScrollAnimation();
+  const mapAnimation = useScrollAnimation();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -42,7 +47,10 @@ const Contact = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <div 
+            ref={heroAnimation.elementRef}
+            className={`text-center animate-on-scroll ${heroAnimation.isVisible ? 'visible' : ''}`}
+          >
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
               We're Here to 
               <span className="text-green-400"> Help</span>
@@ -58,7 +66,10 @@ const Contact = () => {
       {/* Contact Information and Form */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div 
+            ref={contactAnimation.elementRef}
+            className={`grid grid-cols-1 lg:grid-cols-2 gap-12 animate-on-scroll ${contactAnimation.isVisible ? 'visible' : ''}`}
+          >
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
@@ -228,14 +239,19 @@ const Contact = () => {
       {/* Map Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Visit Our Office</h2>
-            <p className="text-lg text-gray-600">
-              Located in the heart of Kisumu, we're easily accessible for in-person consultations.
-            </p>
-          </div>
-          <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
-            <p className="text-gray-500 text-lg">Interactive Map Coming Soon</p>
+          <div 
+            ref={mapAnimation.elementRef}
+            className={`animate-on-scroll ${mapAnimation.isVisible ? 'visible' : ''}`}
+          >
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Visit Our Office</h2>
+              <p className="text-lg text-gray-600">
+                Located in the heart of Kisumu, we're easily accessible for in-person consultations.
+              </p>
+            </div>
+            <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
+              <p className="text-gray-500 text-lg">Interactive Map Coming Soon</p>
+            </div>
           </div>
         </div>
       </section>
