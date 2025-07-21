@@ -2,9 +2,16 @@
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
-import { Send, Calendar, Phone } from 'lucide-react';
+import { Send, Calendar, Phone, CheckCircle } from 'lucide-react';
+import { useToast } from '../hooks/use-toast';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Quote = () => {
+  const { toast } = useToast();
+  const heroAnimation = useScrollAnimation();
+  const formAnimation = useScrollAnimation();
+  const processAnimation = useScrollAnimation();
+  
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -14,6 +21,9 @@ const Quote = () => {
     message: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -22,9 +32,49 @@ const Quote = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Quote request submitted:', formData);
+    setIsSubmitting(true);
+
+    try {
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      setShowSuccess(true);
+      toast({
+        title: "Quote Request Submitted!",
+        description: "We'll contact you within 24 hours with a detailed proposal.",
+      });
+
+      // Reset form after success
+      setTimeout(() => {
+        setFormData({
+          fullName: '',
+          email: '',
+          phone: '',
+          service: '',
+          budget: '',
+          message: ''
+        });
+        setShowSuccess(false);
+      }, 3000);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to submit quote request. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const scheduleOnlineMeeting = () => {
+    toast({
+      title: "Meeting Scheduler",
+      description: "Redirecting to our calendar booking system...",
+    });
+    // In a real app, this would open a calendar booking widget
   };
 
   const services = [
@@ -53,7 +103,12 @@ const Quote = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-green-600 to-green-500 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <div 
+            ref={heroAnimation.elementRef}
+            className={`text-center transition-all duration-1000 ${
+              heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
               Let's Talk About Your 
               <span className="text-green-200"> Real Estate Needs</span>
@@ -69,15 +124,33 @@ const Quote = () => {
       {/* Quote Form */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl p-8 shadow-lg">
+          <div 
+            ref={formAnimation.elementRef}
+            className={`bg-white rounded-2xl p-8 shadow-lg transition-all duration-1000 delay-300 ${
+              formAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Request Your Free Consultation</h2>
-              <p className="text-lg text-gray-600">
-                Fill out the form below and we'll get back to you within 24 hours with a detailed proposal.
-              </p>
+              {showSuccess ? (
+                <div className="space-y-4">
+                  <CheckCircle className="h-16 w-16 text-green-600 mx-auto" />
+                  <h2 className="text-3xl font-bold text-green-600 mb-4">Request Submitted Successfully!</h2>
+                  <p className="text-lg text-gray-600">
+                    Thank you! Our team will contact you within 24 hours with a detailed proposal.
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">Request Your Free Consultation</h2>
+                  <p className="text-lg text-gray-600">
+                    Fill out the form below and we'll get back to you within 24 hours with a detailed proposal.
+                  </p>
+                </>
+              )}
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            {!showSuccess && (
+              <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
@@ -188,13 +261,15 @@ const Quote = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <button
                   type="submit"
-                  className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center"
+                  disabled={isSubmitting}
+                  className="w-full bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center"
                 >
                   <Send className="mr-2 h-5 w-5" />
-                  Request Callback
+                  {isSubmitting ? 'Submitting...' : 'Request Callback'}
                 </button>
                 <button
                   type="button"
+                  onClick={scheduleOnlineMeeting}
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center"
                 >
                   <Calendar className="mr-2 h-5 w-5" />
@@ -202,6 +277,7 @@ const Quote = () => {
                 </button>
               </div>
             </form>
+            )}
           </div>
         </div>
       </section>
@@ -209,12 +285,18 @@ const Quote = () => {
       {/* What Happens Next */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">What Happens Next?</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Our streamlined consultation process ensures you get the information and support you need quickly.
-            </p>
-          </div>
+          <div 
+            ref={processAnimation.elementRef}
+            className={`transition-all duration-1000 delay-600 ${
+              processAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">What Happens Next?</h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Our streamlined consultation process ensures you get the information and support you need quickly.
+              </p>
+            </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
@@ -246,6 +328,7 @@ const Quote = () => {
                 You receive a detailed, transparent proposal with all costs and timelines clearly outlined.
               </p>
             </div>
+          </div>
           </div>
         </div>
       </section>

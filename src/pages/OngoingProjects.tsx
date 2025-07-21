@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -7,6 +6,14 @@ import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { MapPin, Bed, Bath, Square, Calendar, Phone } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+
+// Import Kenyan images
+import kenyaResidential from '../assets/kenya-residential-1.jpg';
+import kenyaCommercial from '../assets/kenya-commercial-1.jpg';
+import kenyaTownhouse from '../assets/kenya-townhouse-1.jpg';
+import kenyaLandscape from '../assets/kenya-landscape-1.jpg';
+import kenyaVilla from '../assets/kenya-villa-1.jpg';
+import kenyaWildlife from '../assets/kenya-wildlife-1.jpg';
 
 const OngoingProjects = () => {
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation();
@@ -25,7 +32,7 @@ const OngoingProjects = () => {
       bathrooms: "2-3",
       area: "120-200 sqm",
       price: "From KSh 4.5M",
-      image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&h=600&fit=crop",
+      image: kenyaResidential,
       description: "Modern residential apartments with stunning lake views and premium amenities.",
       features: ["Swimming Pool", "Gym", "24/7 Security", "Parking", "Garden"]
     },
@@ -39,7 +46,7 @@ const OngoingProjects = () => {
       units: 12,
       area: "50-150 sqm",
       price: "From KSh 8M",
-      image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=800&h=600&fit=crop",
+      image: kenyaCommercial,
       description: "Prime commercial spaces perfect for retail and office use in the heart of Kisumu.",
       features: ["Prime Location", "High Foot Traffic", "Modern Design", "Ample Parking"]
     },
@@ -55,7 +62,7 @@ const OngoingProjects = () => {
       bathrooms: "3-4",
       area: "180-250 sqm",
       price: "From KSh 6.2M",
-      image: "https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=800&h=600&fit=crop",
+      image: kenyaTownhouse,
       description: "Spacious townhouses with private gardens and modern finishes.",
       features: ["Private Garden", "Garage", "Modern Kitchen", "Master En-suite"]
     },
@@ -71,7 +78,7 @@ const OngoingProjects = () => {
       bathrooms: "1-2",
       area: "65-140 sqm",
       price: "From KSh 2.8M",
-      image: "https://images.unsplash.com/photo-1431576901776-e539bd916ba2?w=800&h=600&fit=crop",
+      image: kenyaLandscape,
       description: "Affordable modern apartments with excellent connectivity to the city center.",
       features: ["Affordable Housing", "Good Transport Links", "Community Center", "Playground"]
     },
@@ -87,7 +94,7 @@ const OngoingProjects = () => {
       bathrooms: "4-5",
       area: "300-400 sqm",
       price: "From KSh 12M",
-      image: "https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?w=800&h=600&fit=crop",
+      image: kenyaVilla,
       description: "Luxury villas with panoramic views and premium specifications.",
       features: ["Panoramic Views", "Luxury Finishes", "Large Compound", "Staff Quarters"]
     },
@@ -101,7 +108,7 @@ const OngoingProjects = () => {
       units: 20,
       area: "40-120 sqm",
       price: "From KSh 5.5M",
-      image: "https://images.unsplash.com/photo-1459767129954-1b1c1f9b9ace?w=800&h=600&fit=crop",
+      image: kenyaWildlife,
       description: "Modern office suites in the central business district with premium amenities.",
       features: ["CBD Location", "High-Speed Internet", "Conference Facilities", "Reception Services"]
     }

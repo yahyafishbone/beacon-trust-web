@@ -2,10 +2,13 @@
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import MapboxMap from '../components/MapboxMap';
 import { Phone, Mail, MapPin, Clock, Send, Facebook, Instagram, Twitter } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useToast } from '../hooks/use-toast';
 
 const Contact = () => {
+  const { toast } = useToast();
   const heroAnimation = useScrollAnimation();
   const contactAnimation = useScrollAnimation();
   const mapAnimation = useScrollAnimation();
@@ -17,6 +20,8 @@ const Contact = () => {
     message: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -25,10 +30,35 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+
+    try {
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      toast({
+        title: "Message Sent Successfully!",
+        description: "We'll get back to you within 24 hours.",
+      });
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        service: '',
+        message: ''
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const services = [
@@ -225,10 +255,11 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center"
+                  disabled={isSubmitting}
+                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center"
                 >
                   <Send className="mr-2 h-5 w-5" />
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>
@@ -249,9 +280,7 @@ const Contact = () => {
                 Located in the heart of Kisumu, we're easily accessible for in-person consultations.
               </p>
             </div>
-            <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
-              <p className="text-gray-500 text-lg">Interactive Map Coming Soon</p>
-            </div>
+            <MapboxMap />
           </div>
         </div>
       </section>
