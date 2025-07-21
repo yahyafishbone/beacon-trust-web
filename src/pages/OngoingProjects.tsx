@@ -134,21 +134,21 @@ const OngoingProjects = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
             Ongoing Projects & Properties
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 max-w-3xl mx-auto">
             Discover our current developments and available properties across Kisumu. 
             From residential apartments to commercial spaces, find your perfect investment opportunity.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 text-lg">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 text-sm sm:text-base lg:text-lg">
             <div className="flex items-center space-x-2">
-              <Badge variant="secondary" className="bg-white/20 text-white hover:bg-white/30">
+              <Badge variant="secondary" className="bg-white/20 text-white hover:bg-white/30 text-xs sm:text-sm">
                 6 Active Projects
               </Badge>
             </div>
             <div className="flex items-center space-x-2">
-              <Badge variant="secondary" className="bg-white/20 text-white hover:bg-white/30">
+              <Badge variant="secondary" className="bg-white/20 text-white hover:bg-white/30 text-xs sm:text-sm">
                 130+ Units Available
               </Badge>
             </div>
@@ -164,7 +164,7 @@ const OngoingProjects = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {projects.map((project, index) => (
               <Card 
                 key={project.id} 
@@ -175,73 +175,73 @@ const OngoingProjects = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+                    className="w-full h-40 sm:h-48 object-cover transition-transform duration-300 hover:scale-105"
                   />
                   <Badge 
-                    className={`absolute top-4 right-4 ${getStatusColor(project.status)} transition-colors duration-200`}
+                    className={`absolute top-2 sm:top-4 right-2 sm:right-4 text-xs sm:text-sm ${getStatusColor(project.status)} transition-colors duration-200`}
                   >
                     {project.status}
                   </Badge>
                 </div>
                 
-                <CardHeader>
-                  <CardTitle className="text-lg font-semibold text-blue-900 hover:text-green-600 transition-colors duration-200">
+                <CardHeader className="p-4 sm:p-6">
+                  <CardTitle className="text-base sm:text-lg font-semibold text-blue-900 hover:text-green-600 transition-colors duration-200">
                     {project.title}
                   </CardTitle>
-                  <CardDescription className="flex items-center space-x-1 text-gray-600">
-                    <MapPin className="h-4 w-4" />
+                  <CardDescription className="flex items-center space-x-1 text-gray-600 text-sm">
+                    <MapPin className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
                     <span>{project.location}</span>
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent className="space-y-4">
-                  <p className="text-sm text-gray-700">{project.description}</p>
+                <CardContent className="space-y-3 sm:space-y-4 p-4 sm:p-6 pt-0">
+                  <p className="text-xs sm:text-sm text-gray-700">{project.description}</p>
                   
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div className="space-y-2">
-                      <div className="flex items-center space-x-2">
-                        <Calendar className="h-4 w-4 text-blue-600" />
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
+                    <div className="space-y-1 sm:space-y-2">
+                      <div className="flex items-center space-x-1 sm:space-x-2">
+                        <Calendar className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600 flex-shrink-0" />
                         <span className="font-medium">Completion:</span>
                       </div>
-                      <span className="text-gray-600">{project.completion}</span>
+                      <span className="text-gray-600 text-xs sm:text-sm">{project.completion}</span>
                     </div>
                     
-                    <div className="space-y-2">
-                      <div className="flex items-center space-x-2">
-                        <Square className="h-4 w-4 text-green-600" />
+                    <div className="space-y-1 sm:space-y-2">
+                      <div className="flex items-center space-x-1 sm:space-x-2">
+                        <Square className="h-3 w-3 sm:h-4 sm:w-4 text-green-600 flex-shrink-0" />
                         <span className="font-medium">Units:</span>
                       </div>
-                      <span className="text-gray-600">{project.units}</span>
+                      <span className="text-gray-600 text-xs sm:text-sm">{project.units}</span>
                     </div>
 
                     {project.bedrooms && (
                       <>
-                        <div className="space-y-2">
-                          <div className="flex items-center space-x-2">
-                            <Bed className="h-4 w-4 text-blue-600" />
+                        <div className="space-y-1 sm:space-y-2">
+                          <div className="flex items-center space-x-1 sm:space-x-2">
+                            <Bed className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600 flex-shrink-0" />
                             <span className="font-medium">Bedrooms:</span>
                           </div>
-                          <span className="text-gray-600">{project.bedrooms}</span>
+                          <span className="text-gray-600 text-xs sm:text-sm">{project.bedrooms}</span>
                         </div>
                         
-                        <div className="space-y-2">
-                          <div className="flex items-center space-x-2">
-                            <Bath className="h-4 w-4 text-green-600" />
+                        <div className="space-y-1 sm:space-y-2">
+                          <div className="flex items-center space-x-1 sm:space-x-2">
+                            <Bath className="h-3 w-3 sm:h-4 sm:w-4 text-green-600 flex-shrink-0" />
                             <span className="font-medium">Bathrooms:</span>
                           </div>
-                          <span className="text-gray-600">{project.bathrooms}</span>
+                          <span className="text-gray-600 text-xs sm:text-sm">{project.bathrooms}</span>
                         </div>
                       </>
                     )}
                   </div>
 
-                  <div className="border-t pt-4">
-                    <div className="flex justify-between items-center mb-3">
-                      <span className="text-lg font-bold text-green-600">{project.price}</span>
-                      <span className="text-sm text-gray-500">{project.area}</span>
+                  <div className="border-t pt-3 sm:pt-4">
+                    <div className="flex justify-between items-center mb-2 sm:mb-3">
+                      <span className="text-base sm:text-lg font-bold text-green-600">{project.price}</span>
+                      <span className="text-xs sm:text-sm text-gray-500">{project.area}</span>
                     </div>
                     
-                    <div className="flex flex-wrap gap-1 mb-4">
+                    <div className="flex flex-wrap gap-1 mb-3 sm:mb-4">
                       {project.features.slice(0, 3).map((feature, idx) => (
                         <Badge key={idx} variant="outline" className="text-xs hover:bg-blue-50 transition-colors duration-200">
                           {feature}
@@ -256,17 +256,18 @@ const OngoingProjects = () => {
 
                     <div className="flex space-x-2">
                       <Button 
-                        className="flex-1 bg-blue-900 hover:bg-blue-800 transition-colors duration-200"
+                        className="flex-1 bg-blue-900 hover:bg-blue-800 transition-colors duration-200 text-xs sm:text-sm"
                         size="sm"
                       >
-                        View Details
+                        <span className="hidden sm:inline">View Details</span>
+                        <span className="sm:hidden">Details</span>
                       </Button>
                       <Button 
                         variant="outline" 
                         size="sm"
-                        className="hover:bg-green-50 hover:border-green-600 hover:text-green-600 transition-all duration-200"
+                        className="hover:bg-green-50 hover:border-green-600 hover:text-green-600 transition-all duration-200 px-2 sm:px-3"
                       >
-                        <Phone className="h-4 w-4" />
+                        <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
                       </Button>
                     </div>
                   </div>
@@ -278,28 +279,30 @@ const OngoingProjects = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-blue-50 py-16">
+      <section className="bg-blue-50 py-12 sm:py-16">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-blue-900 mb-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-blue-900 mb-4 sm:mb-6">
             Ready to Invest in Your Future?
           </h2>
-          <p className="text-lg text-gray-700 mb-8">
+          <p className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8">
             Get in touch with our property experts to learn more about these exciting projects 
             and find the perfect property that matches your investment goals.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-green-600 hover:bg-green-700 transition-colors duration-200 hover:scale-105 transform"
+              className="bg-green-600 hover:bg-green-700 transition-colors duration-200 hover:scale-105 transform text-sm sm:text-base"
             >
-              Schedule a Site Visit
+              <span className="hidden sm:inline">Schedule a Site Visit</span>
+              <span className="sm:hidden">Site Visit</span>
             </Button>
             <Button 
               variant="outline" 
               size="lg"
-              className="hover:bg-blue-900 hover:text-white transition-all duration-200 hover:scale-105 transform"
+              className="hover:bg-blue-900 hover:text-white transition-all duration-200 hover:scale-105 transform text-sm sm:text-base"
             >
-              Download Brochure
+              <span className="hidden sm:inline">Download Brochure</span>
+              <span className="sm:hidden">Brochure</span>
             </Button>
           </div>
         </div>
