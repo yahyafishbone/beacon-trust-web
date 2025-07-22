@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
-import MapboxMap from '../components/MapboxMap';
+import LeafletMap from '../components/LeafletMap';
 import { Phone, Mail, MapPin, Clock, Send, Facebook, Instagram, Twitter } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useToast } from '../hooks/use-toast';
@@ -280,7 +280,7 @@ const Contact = () => {
                 Located in the heart of Kisumu, we're easily accessible for in-person consultations.
               </p>
             </div>
-            <MapboxMap />
+            <LeafletMap />
           </div>
         </div>
       </section>
