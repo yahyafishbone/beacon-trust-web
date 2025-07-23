@@ -185,21 +185,21 @@ const Blog = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-8">All Articles</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {blogPosts.map((post, index) => (
-                <article key={index} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                <article key={index} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-500 border border-gray-100 hover:scale-105 hover:bg-gradient-to-br hover:from-white hover:to-blue-50 group cursor-pointer">
                   <div className="flex items-center justify-between mb-4">
-                    <span className={`px-3 py-1 text-xs font-medium rounded-full ${getCategoryColor(post.category)}`}>
+                    <span className={`px-3 py-1 text-xs font-medium rounded-full transition-all duration-300 group-hover:scale-110 ${getCategoryColor(post.category)}`}>
                       {post.category}
                     </span>
                     <div className="flex items-center text-gray-500 text-sm">
-                      <Clock className="h-4 w-4 mr-1" />
+                      <Clock className="h-4 w-4 mr-1 transition-all duration-300 group-hover:text-blue-600 group-hover:scale-110" />
                       {post.readTime}
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{post.title}</h3>
-                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 transition-colors duration-300 group-hover:text-blue-700">{post.title}</h3>
+                  <p className="text-gray-600 mb-4 transition-colors duration-300 group-hover:text-gray-800">{post.excerpt}</p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center text-gray-500 text-sm">
-                      <Calendar className="h-4 w-4 mr-1" />
+                      <Calendar className="h-4 w-4 mr-1 transition-all duration-300 group-hover:text-blue-600 group-hover:scale-110" />
                       {new Date(post.date).toLocaleDateString('en-US', { 
                         year: 'numeric', 
                         month: 'long', 
@@ -208,10 +208,10 @@ const Blog = () => {
                     </div>
                     <Link 
                       to="#"
-                      className="text-blue-600 hover:text-blue-700 font-medium text-sm inline-flex items-center"
+                      className="text-blue-600 hover:text-blue-700 font-medium text-sm inline-flex items-center transition-all duration-300 hover:translate-x-1 group/link"
                     >
                       Read More
-                      <ArrowRight className="ml-1 h-4 w-4" />
+                      <ArrowRight className="ml-1 h-4 w-4 transition-all duration-300 group-hover/link:translate-x-1 group-hover/link:scale-110" />
                     </Link>
                   </div>
                 </article>

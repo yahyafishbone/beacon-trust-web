@@ -117,28 +117,28 @@ const About = () => {
             className={`grid grid-cols-1 lg:grid-cols-2 gap-12 animate-on-scroll ${visionAnimation.isVisible ? 'visible' : ''}`}
           >
             {/* Vision */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <div className="bg-white rounded-2xl p-8 shadow-lg transition-all duration-500 hover:shadow-xl hover:scale-105 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white group">
               <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <Eye className="h-6 w-6 text-blue-600" />
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-blue-200 group-hover:scale-110">
+                  <Eye className="h-6 w-6 text-blue-600 transition-all duration-300 group-hover:text-blue-700" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 ml-4">Our Vision</h3>
+                <h3 className="text-2xl font-bold text-gray-900 ml-4 transition-colors duration-300 group-hover:text-blue-700">Our Vision</h3>
               </div>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-lg text-gray-700 leading-relaxed transition-colors duration-300 group-hover:text-gray-800">
                 To be Kenya's most trusted and transparent real estate brand, replacing uncertainty 
                 and inefficiency with integrity and innovation, and involving our clients every step of the way.
               </p>
             </div>
 
             {/* Mission */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <div className="bg-white rounded-2xl p-8 shadow-lg transition-all duration-500 hover:shadow-xl hover:scale-105 hover:bg-gradient-to-br hover:from-green-50 hover:to-white group">
               <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                  <Target className="h-6 w-6 text-green-600" />
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-green-200 group-hover:scale-110">
+                  <Target className="h-6 w-6 text-green-600 transition-all duration-300 group-hover:text-green-700" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 ml-4">Our Mission</h3>
+                <h3 className="text-2xl font-bold text-gray-900 ml-4 transition-colors duration-300 group-hover:text-green-700">Our Mission</h3>
               </div>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-lg text-gray-700 leading-relaxed transition-colors duration-300 group-hover:text-gray-800">
                 To make real estate investment simpler, safer, smarter, faster, and cheaper — by offering 
                 clear, cost-effective property solutions built on integrity and tailored to every client's needs.
               </p>
@@ -164,12 +164,12 @@ const About = () => {
               {values.map((value, index) => {
                 const IconComponent = value.icon;
                 return (
-                  <div key={index} className="text-center group">
-                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors">
-                      <IconComponent className="h-8 w-8 text-blue-600" />
+                  <div key={index} className="text-center group cursor-pointer transition-all duration-300 hover:transform hover:scale-105">
+                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:bg-blue-200 group-hover:scale-110 group-hover:shadow-lg">
+                      <IconComponent className="h-8 w-8 text-blue-600 transition-all duration-300 group-hover:text-blue-700 group-hover:scale-110" />
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{value.title}</h3>
-                    <p className="text-gray-600">{value.description}</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3 transition-colors duration-300 group-hover:text-blue-700">{value.title}</h3>
+                    <p className="text-gray-600 transition-colors duration-300 group-hover:text-gray-800">{value.description}</p>
                   </div>
                 );
               })}
@@ -192,24 +192,24 @@ const About = () => {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                <CheckCircle className="h-8 w-8 text-green-400 mb-4" />
-                <h3 className="text-xl font-semibold mb-3">Full Transparency</h3>
-                <p className="text-blue-100">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-lg group cursor-pointer">
+                <CheckCircle className="h-8 w-8 text-green-400 mb-4 transition-all duration-300 group-hover:scale-110 group-hover:text-green-300" />
+                <h3 className="text-xl font-semibold mb-3 transition-colors duration-300 group-hover:text-white">Full Transparency</h3>
+                <p className="text-blue-100 transition-colors duration-300 group-hover:text-white">
                   No hidden fees, no surprises. Every cost is disclosed upfront, and you're involved in every decision.
                 </p>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                <Shield className="h-8 w-8 text-green-400 mb-4" />
-                <h3 className="text-xl font-semibold mb-3">Complete Due Diligence</h3>
-                <p className="text-blue-100">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-lg group cursor-pointer">
+                <Shield className="h-8 w-8 text-green-400 mb-4 transition-all duration-300 group-hover:scale-110 group-hover:text-green-300" />
+                <h3 className="text-xl font-semibold mb-3 transition-colors duration-300 group-hover:text-white">Complete Due Diligence</h3>
+                <p className="text-blue-100 transition-colors duration-300 group-hover:text-white">
                   We verify every property through official registries and conduct thorough legal checks.
                 </p>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                <UsersIcon className="h-8 w-8 text-green-400 mb-4" />
-                <h3 className="text-xl font-semibold mb-3">Client-Centric Approach</h3>
-                <p className="text-blue-100">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-lg group cursor-pointer">
+                <UsersIcon className="h-8 w-8 text-green-400 mb-4 transition-all duration-300 group-hover:scale-110 group-hover:text-green-300" />
+                <h3 className="text-xl font-semibold mb-3 transition-colors duration-300 group-hover:text-white">Client-Centric Approach</h3>
+                <p className="text-blue-100 transition-colors duration-300 group-hover:text-white">
                   Your success is our success. We tailor our services to meet your specific needs and budget.
                 </p>
               </div>

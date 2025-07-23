@@ -109,18 +109,18 @@ const Services = () => {
             {serviceCategories.map((category, index) => {
               const IconComponent = category.icon;
               return (
-                <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+                <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 hover:scale-105 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white group cursor-pointer">
                   <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <IconComponent className="h-6 w-6 text-blue-600" />
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-blue-200 group-hover:scale-110">
+                      <IconComponent className="h-6 w-6 text-blue-600 transition-all duration-300 group-hover:text-blue-700 group-hover:scale-110" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 ml-4">{category.title}</h3>
+                    <h3 className="text-2xl font-bold text-gray-900 ml-4 transition-colors duration-300 group-hover:text-blue-700">{category.title}</h3>
                   </div>
                   <ul className="space-y-3">
                     {category.services.map((service, serviceIndex) => (
-                      <li key={serviceIndex} className="flex items-start space-x-3">
-                        <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700">{service}</span>
+                      <li key={serviceIndex} className="flex items-start space-x-3 transition-all duration-300 hover:translate-x-2 hover:bg-blue-50 hover:rounded-lg hover:p-2 group/item">
+                        <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/item:scale-110 group-hover/item:text-green-700" />
+                        <span className="text-gray-700 transition-colors duration-300 group-hover/item:text-gray-900">{service}</span>
                       </li>
                     ))}
                   </ul>
@@ -170,14 +170,14 @@ const Services = () => {
                   description: 'Continued support and management services as needed.'
                 }
               ].map((step, index) => (
-                <div key={index} className="text-center relative">
-                  <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                <div key={index} className="text-center relative group cursor-pointer transition-all duration-300 hover:transform hover:scale-105">
+                  <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold transition-all duration-300 group-hover:bg-blue-700 group-hover:scale-110 group-hover:shadow-lg">
                     {step.step}
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{step.title}</h3>
-                  <p className="text-gray-600">{step.description}</p>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3 transition-colors duration-300 group-hover:text-blue-700">{step.title}</h3>
+                  <p className="text-gray-600 transition-colors duration-300 group-hover:text-gray-800">{step.description}</p>
                   {index < 3 && (
-                    <ArrowRight className="hidden lg:block absolute top-8 -right-4 h-6 w-6 text-gray-400" />
+                    <ArrowRight className="hidden lg:block absolute top-8 -right-4 h-6 w-6 text-gray-400 transition-all duration-300 group-hover:text-blue-600 group-hover:scale-110" />
                   )}
                 </div>
               ))}
@@ -199,30 +199,30 @@ const Services = () => {
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="h-8 w-8 text-white" />
+              <div className="text-center group cursor-pointer transition-all duration-300 hover:transform hover:scale-105">
+                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:bg-green-400 group-hover:scale-110 group-hover:shadow-lg">
+                  <CheckCircle className="h-8 w-8 text-white transition-all duration-300 group-hover:scale-110" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">100% Transparency</h3>
-                <p className="text-blue-100">
+                <h3 className="text-xl font-semibold mb-3 transition-colors duration-300 group-hover:text-white">100% Transparency</h3>
+                <p className="text-blue-100 transition-colors duration-300 group-hover:text-white">
                   Every step is documented and communicated. No hidden processes or surprise costs.
                 </p>
               </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FileText className="h-8 w-8 text-white" />
+              <div className="text-center group cursor-pointer transition-all duration-300 hover:transform hover:scale-105">
+                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:bg-green-400 group-hover:scale-110 group-hover:shadow-lg">
+                  <FileText className="h-8 w-8 text-white transition-all duration-300 group-hover:scale-110" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Legal Compliance</h3>
-                <p className="text-blue-100">
+                <h3 className="text-xl font-semibold mb-3 transition-colors duration-300 group-hover:text-white">Legal Compliance</h3>
+                <p className="text-blue-100 transition-colors duration-300 group-hover:text-white">
                   All our services meet or exceed legal requirements and industry best practices.
                 </p>
               </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Home className="h-8 w-8 text-white" />
+              <div className="text-center group cursor-pointer transition-all duration-300 hover:transform hover:scale-105">
+                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:bg-green-400 group-hover:scale-110 group-hover:shadow-lg">
+                  <Home className="h-8 w-8 text-white transition-all duration-300 group-hover:scale-110" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">End-to-End Support</h3>
-                <p className="text-blue-100">
+                <h3 className="text-xl font-semibold mb-3 transition-colors duration-300 group-hover:text-white">End-to-End Support</h3>
+                <p className="text-blue-100 transition-colors duration-300 group-hover:text-white">
                   From initial consultation to ongoing management, we're with you every step.
                 </p>
               </div>
@@ -243,14 +243,14 @@ const Services = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/quote"
-              className="bg-white text-green-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center justify-center"
+              className="bg-white text-green-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 inline-flex items-center justify-center hover:scale-105 hover:shadow-lg group"
             >
               Get a Free Consultation
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-2 h-5 w-5 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110" />
             </Link>
             <Link
               to="/contact"
-              className="border-2 border-white hover:bg-white hover:text-green-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all inline-flex items-center justify-center"
+              className="border-2 border-white hover:bg-white hover:text-green-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 inline-flex items-center justify-center hover:scale-105 hover:shadow-lg"
             >
               Contact Us Today
             </Link>

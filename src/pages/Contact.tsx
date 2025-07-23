@@ -168,21 +168,21 @@ const Contact = () => {
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Follow Us</h3>
                 <div className="flex space-x-4">
-                  <a href="#" className="w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors">
-                    <Facebook className="h-5 w-5" />
+                  <a href="#" className="w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center hover:bg-blue-700 transition-all duration-300 hover:scale-110 hover:shadow-lg group">
+                    <Facebook className="h-5 w-5 transition-all duration-300 group-hover:scale-110" />
                   </a>
-                  <a href="#" className="w-10 h-10 bg-pink-600 text-white rounded-lg flex items-center justify-center hover:bg-pink-700 transition-colors">
-                    <Instagram className="h-5 w-5" />
+                  <a href="#" className="w-10 h-10 bg-pink-600 text-white rounded-lg flex items-center justify-center hover:bg-pink-700 transition-all duration-300 hover:scale-110 hover:shadow-lg group">
+                    <Instagram className="h-5 w-5 transition-all duration-300 group-hover:scale-110" />
                   </a>
-                  <a href="#" className="w-10 h-10 bg-blue-400 text-white rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors">
-                    <Twitter className="h-5 w-5" />
+                  <a href="#" className="w-10 h-10 bg-blue-400 text-white rounded-lg flex items-center justify-center hover:bg-blue-500 transition-all duration-300 hover:scale-110 hover:shadow-lg group">
+                    <Twitter className="h-5 w-5 transition-all duration-300 group-hover:scale-110" />
                   </a>
                 </div>
               </div>
             </div>
 
             {/* Contact Form */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <div className="bg-white rounded-2xl p-8 shadow-lg transition-all duration-500 hover:shadow-xl hover:scale-105 hover:bg-gradient-to-br hover:from-white hover:to-blue-50">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>

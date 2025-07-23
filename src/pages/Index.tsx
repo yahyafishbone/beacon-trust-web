@@ -87,40 +87,40 @@ const Index = () => {
               </h2>
               <div className="space-y-3 sm:space-y-4">
                 {whyChooseUs.map((item, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-green-600 flex-shrink-0 mt-1" />
-                    <span className="text-base sm:text-lg text-gray-700">{item}</span>
+                  <div key={index} className="flex items-start space-x-3 transition-all duration-300 hover:translate-x-2 hover:bg-gray-50 hover:rounded-lg hover:p-3 hover:shadow-sm group">
+                    <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-green-600 flex-shrink-0 mt-1 transition-all duration-300 group-hover:scale-110 group-hover:text-green-700" />
+                    <span className="text-base sm:text-lg text-gray-700 transition-colors duration-300 group-hover:text-gray-900">{item}</span>
                   </div>
                 ))}
               </div>
               <div className="mt-6 sm:mt-8">
                 <Link
                   to="/why-beacontrust"
-                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-base sm:text-lg"
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-base sm:text-lg transition-all duration-300 hover:translate-x-2 group"
                 >
                   Learn More
-                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110" />
                 </Link>
               </div>
             </div>
             <div className="relative order-1 lg:order-2">
-              <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl p-6 sm:p-8">
+              <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl p-6 sm:p-8 transition-all duration-500 hover:shadow-xl hover:scale-105 hover:bg-gradient-to-br hover:from-blue-100 hover:to-green-100">
                 <div className="grid grid-cols-2 gap-4 sm:gap-6">
-                  <div className="text-center">
-                    <div className="text-2xl sm:text-3xl font-bold text-blue-900">500+</div>
-                    <div className="text-sm sm:text-base text-gray-600">Happy Clients</div>
+                  <div className="text-center group cursor-pointer">
+                    <div className="text-2xl sm:text-3xl font-bold text-blue-900 transition-all duration-300 group-hover:scale-110 group-hover:text-blue-700">500+</div>
+                    <div className="text-sm sm:text-base text-gray-600 transition-colors duration-300 group-hover:text-gray-800">Happy Clients</div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-2xl sm:text-3xl font-bold text-blue-900">100%</div>
-                    <div className="text-sm sm:text-base text-gray-600">Verified Land</div>
+                  <div className="text-center group cursor-pointer">
+                    <div className="text-2xl sm:text-3xl font-bold text-blue-900 transition-all duration-300 group-hover:scale-110 group-hover:text-blue-700">100%</div>
+                    <div className="text-sm sm:text-base text-gray-600 transition-colors duration-300 group-hover:text-gray-800">Verified Land</div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-2xl sm:text-3xl font-bold text-blue-900">5+</div>
-                    <div className="text-sm sm:text-base text-gray-600">Years Experience</div>
+                  <div className="text-center group cursor-pointer">
+                    <div className="text-2xl sm:text-3xl font-bold text-blue-900 transition-all duration-300 group-hover:scale-110 group-hover:text-blue-700">5+</div>
+                    <div className="text-sm sm:text-base text-gray-600 transition-colors duration-300 group-hover:text-gray-800">Years Experience</div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-2xl sm:text-3xl font-bold text-blue-900">24/7</div>
-                    <div className="text-sm sm:text-base text-gray-600">Support</div>
+                  <div className="text-center group cursor-pointer">
+                    <div className="text-2xl sm:text-3xl font-bold text-blue-900 transition-all duration-300 group-hover:scale-110 group-hover:text-blue-700">24/7</div>
+                    <div className="text-sm sm:text-base text-gray-600 transition-colors duration-300 group-hover:text-gray-800">Support</div>
                   </div>
                 </div>
               </div>
@@ -143,16 +143,16 @@ const Index = () => {
               return (
                 <div 
                   key={index} 
-                  className={`bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-700 border border-gray-100 hover-scale ${
+                  className={`bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-700 border border-gray-100 hover-scale group ${
                     servicesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
-                    <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4 transition-all duration-300 group-hover:bg-blue-200 group-hover:scale-110">
+                    <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 transition-all duration-300 group-hover:text-blue-700 group-hover:scale-110" />
                   </div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">{service.title}</h3>
-                  <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">{service.description}</p>
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3 transition-colors duration-300 group-hover:text-blue-700">{service.title}</h3>
+                  <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 transition-colors duration-300 group-hover:text-gray-800">{service.description}</p>
                 </div>
               );
             })}
@@ -160,10 +160,10 @@ const Index = () => {
           <div className="text-center mt-8 sm:mt-12">
             <Link
               to="/services"
-              className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 rounded-lg font-semibold text-base sm:text-lg transition-colors"
+              className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg group"
             >
               View All Services
-              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110" />
             </Link>
           </div>
         </div>
@@ -250,15 +250,15 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <Link
               to="/quote"
-              className="bg-white text-green-600 hover:bg-gray-100 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-colors inline-flex items-center justify-center"
+              className="bg-white text-green-600 hover:bg-gray-100 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 inline-flex items-center justify-center hover:scale-105 hover:shadow-lg group"
             >
               <span className="hidden sm:inline">Book a Free Consultation</span>
               <span className="sm:hidden">Free Consultation</span>
-              <Phone className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+              <Phone className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-all duration-300 group-hover:scale-110" />
             </Link>
             <Link
               to="/quote"
-              className="border-2 border-white hover:bg-white hover:text-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all inline-flex items-center justify-center"
+              className="border-2 border-white hover:bg-white hover:text-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 inline-flex items-center justify-center hover:scale-105 hover:shadow-lg"
             >
               <span className="hidden sm:inline">Get a Custom Quote</span>
               <span className="sm:hidden">Get Quote</span>
