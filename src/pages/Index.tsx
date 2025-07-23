@@ -5,8 +5,14 @@ import { ArrowRight, Shield, Eye, Zap, Globe, Building, Users, Star, CheckCircle
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import Hero from '../components/Hero';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Index = () => {
+  const { elementRef: servicesRef, isVisible: servicesVisible } = useScrollAnimation();
+  const { elementRef: whyChooseRef, isVisible: whyChooseVisible } = useScrollAnimation();
+  const { elementRef: testimonialsRef, isVisible: testimonialsVisible } = useScrollAnimation();
+  const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
+
   const services = [
     {
       icon: Shield,
@@ -46,7 +52,12 @@ const Index = () => {
       <Hero />
 
       {/* What We Do Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+      <section 
+        ref={servicesRef}
+        className={`py-12 sm:py-16 lg:py-20 bg-gray-50 transition-all duration-1000 ${
+          servicesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
@@ -62,7 +73,12 @@ const Index = () => {
       </section>
 
       {/* Why BeaconTrust Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-white">
+      <section 
+        ref={whyChooseRef}
+        className={`py-12 sm:py-16 lg:py-20 bg-white transition-all duration-1000 ${
+          whyChooseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -125,7 +141,13 @@ const Index = () => {
             {services.map((service, index) => {
               const IconComponent = service.icon;
               return (
-                <div key={index} className="bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+                <div 
+                  key={index} 
+                  className={`bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-700 border border-gray-100 hover-scale ${
+                    servicesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                  }`}
+                  style={{ transitionDelay: `${index * 150}ms` }}
+                >
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
                     <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
                   </div>
@@ -148,7 +170,12 @@ const Index = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-blue-900 text-white">
+      <section 
+        ref={testimonialsRef}
+        className={`py-12 sm:py-16 lg:py-20 bg-blue-900 text-white transition-all duration-1000 ${
+          testimonialsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">
@@ -156,7 +183,10 @@ const Index = () => {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20">
+            <div className={`bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20 transition-all duration-700 hover-scale ${
+              testimonialsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+            style={{ transitionDelay: '100ms' }}>
               <div className="flex items-center mb-3 sm:mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-400 fill-current" />
@@ -168,7 +198,10 @@ const Index = () => {
               <div className="font-semibold text-sm sm:text-base">— James Otieno</div>
               <div className="text-blue-200 text-xs sm:text-sm">Diaspora Investor (USA)</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20">
+            <div className={`bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20 transition-all duration-700 hover-scale ${
+              testimonialsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+            style={{ transitionDelay: '200ms' }}>
               <div className="flex items-center mb-3 sm:mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-400 fill-current" />
@@ -180,7 +213,10 @@ const Index = () => {
               <div className="font-semibold text-sm sm:text-base">— Mary Wanjiku</div>
               <div className="text-blue-200 text-xs sm:text-sm">Property Investor</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20 md:col-span-2 lg:col-span-1">
+            <div className={`bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20 md:col-span-2 lg:col-span-1 transition-all duration-700 hover-scale ${
+              testimonialsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+            style={{ transitionDelay: '300ms' }}>
               <div className="flex items-center mb-3 sm:mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-400 fill-current" />
@@ -197,7 +233,12 @@ const Index = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-green-600 text-white">
+      <section 
+        ref={ctaRef}
+        className={`py-12 sm:py-16 lg:py-20 bg-green-600 text-white transition-all duration-1000 ${
+          ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">
             Let's Make Your Real Estate Journey Safer
