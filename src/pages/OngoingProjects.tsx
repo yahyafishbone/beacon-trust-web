@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
+import { useSEO } from '../hooks/useSEO';
 import {
   Card,
   CardContent,
@@ -37,6 +38,12 @@ import kenyaVilla from "../assets/kenya-villa-1.jpg";
 import kenyaWildlife from "../assets/kenya-wildlife-1.jpg";
 
 const OngoingProjects = () => {
+  useSEO({
+    title: 'Ongoing Projects & Properties',
+    description: 'Explore BeaconTrust\'s ongoing projects and available properties in Kisumu, Kenya. Houses, plots, commercial spaces, and residential developments.',
+    keywords: 'ongoing projects Kenya, property listings Kisumu, houses for sale, plots for sale, real estate development, residential projects, commercial properties'
+  });
+
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation();
   const { elementRef: projectsRef, isVisible: projectsVisible } =
     useScrollAnimation();

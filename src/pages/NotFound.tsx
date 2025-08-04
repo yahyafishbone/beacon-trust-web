@@ -1,8 +1,15 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { useSEO } from '../hooks/useSEO';
 
 const NotFound = () => {
   const location = useLocation();
+
+  useSEO({
+    title: '404 - Page Not Found',
+    description: 'The page you are looking for could not be found. Return to BeaconTrust homepage to continue browsing our real estate services.',
+    keywords: '404, page not found, BeaconTrust'
+  });
 
   useEffect(() => {
     console.error(

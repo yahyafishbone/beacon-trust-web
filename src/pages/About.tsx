@@ -4,8 +4,15 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Target, Eye, Heart, Shield, Lightbulb, Users as UsersIcon, CheckCircle } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useSEO } from '../hooks/useSEO';
 
 const About = () => {
+  useSEO({
+    title: 'About Us',
+    description: 'Learn about BeaconTrust - your trusted real estate partner in Kenya. Discover our mission, values, and commitment to transparent property services.',
+    keywords: 'about BeaconTrust, real estate company Kenya, trusted property services, real estate mission, property management company'
+  });
+
   const heroAnimation = useScrollAnimation();
   const storyAnimation = useScrollAnimation();
   const visionAnimation = useScrollAnimation();

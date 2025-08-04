@@ -5,8 +5,15 @@ import Footer from '../components/Footer';
 import { Shield, AlertTriangle, Eye, Users, DollarSign, Home, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useSEO } from '../hooks/useSEO';
 
 const WhyBeaconTrust = () => {
+  useSEO({
+    title: 'Why Choose BeaconTrust',
+    description: 'Discover why BeaconTrust is Kenya\'s most trusted real estate partner. Fraud protection, transparent pricing, verified properties, and professional service.',
+    keywords: 'why choose BeaconTrust, trusted real estate Kenya, fraud protection, transparent pricing, verified properties, professional service'
+  });
+
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation();
   const { elementRef: protectionsRef, isVisible: protectionsVisible } = useScrollAnimation();
   const { elementRef: approachRef, isVisible: approachVisible } = useScrollAnimation();

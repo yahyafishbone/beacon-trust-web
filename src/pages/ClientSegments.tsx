@@ -4,8 +4,15 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { User, Building2, TrendingUp, Scale, Home, Globe, Users, Church } from 'lucide-react';
 import { useScrollAnimation, useStaggeredAnimation } from '../hooks/useScrollAnimation';
+import { useSEO } from '../hooks/useSEO';
 
 const ClientSegments = () => {
+  useSEO({
+    title: 'Client Segments',
+    description: 'BeaconTrust serves diverse clients - individual buyers, investors, diaspora, corporations, and institutions. Tailored real estate solutions for every segment.',
+    keywords: 'real estate clients Kenya, diaspora property investment, corporate real estate, individual buyers, property investors, institutional clients'
+  });
+
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation();
   const { elementRef: segmentsRef, isVisible: segmentsVisible } = useScrollAnimation();
   const { elementRef: specialRef, isVisible: specialVisible } = useScrollAnimation();

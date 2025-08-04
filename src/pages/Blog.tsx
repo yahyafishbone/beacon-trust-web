@@ -5,8 +5,15 @@ import Footer from '../components/Footer';
 import { Calendar, Clock, ArrowRight, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useSEO } from '../hooks/useSEO';
 
 const Blog = () => {
+  useSEO({
+    title: 'Real Estate Blog',
+    description: 'Latest insights on Kenya real estate market, property investment tips, legal guidance, and industry news from BeaconTrust experts.',
+    keywords: 'real estate blog Kenya, property investment tips, land verification guide, real estate market trends, property legal advice, Kenya property news'
+  });
+
   const heroAnimation = useScrollAnimation();
   const featuredAnimation = useScrollAnimation();
   const allPostsAnimation = useScrollAnimation();

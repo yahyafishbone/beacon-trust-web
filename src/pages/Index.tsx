@@ -6,8 +6,15 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import Hero from '../components/Hero';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useSEO } from '../hooks/useSEO';
 
 const Index = () => {
+  useSEO({
+    title: 'Home',
+    description: 'BeaconTrust provides transparent, secure, end-to-end property services in Kenya. Land verification, legal processing, property management, and more.',
+    keywords: 'real estate Kenya, property management, land verification, property investment, Kisumu real estate, Kenya property services'
+  });
+
   const { elementRef: servicesRef, isVisible: servicesVisible } = useScrollAnimation();
   const { elementRef: whyChooseRef, isVisible: whyChooseVisible } = useScrollAnimation();
   const { elementRef: testimonialsRef, isVisible: testimonialsVisible } = useScrollAnimation();

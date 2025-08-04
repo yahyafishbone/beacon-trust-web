@@ -5,8 +5,15 @@ import Footer from '../components/Footer';
 import { Search, FileText, Building, DollarSign, Compass, Home, CheckCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useSEO } from '../hooks/useSEO';
 
 const Services = () => {
+  useSEO({
+    title: 'Our Services',
+    description: 'Comprehensive real estate services in Kenya - land verification, legal processing, property management, construction supervision, and more.',
+    keywords: 'real estate services Kenya, land verification, property management, construction supervision, legal processing, real estate consulting'
+  });
+
   const heroAnimation = useScrollAnimation();
   const servicesAnimation = useScrollAnimation();
   const processAnimation = useScrollAnimation();

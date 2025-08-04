@@ -5,8 +5,15 @@ import Footer from '../components/Footer';
 import { Send, Calendar, Phone, CheckCircle } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useSEO } from '../hooks/useSEO';
 
 const Quote = () => {
+  useSEO({
+    title: 'Get a Free Quote',
+    description: 'Get a personalized quote for your real estate needs in Kenya. Free consultation and transparent pricing from BeaconTrust property experts.',
+    keywords: 'real estate quote Kenya, property consultation, free quote, real estate pricing, property services quote, BeaconTrust consultation'
+  });
+
   const { toast } = useToast();
   const heroAnimation = useScrollAnimation();
   const formAnimation = useScrollAnimation();

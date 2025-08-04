@@ -6,8 +6,15 @@ import LeafletMap from '../components/LeafletMap';
 import { Phone, Mail, MapPin, Clock, Send, Facebook, Instagram, Twitter } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useToast } from '../hooks/use-toast';
+import { useSEO } from '../hooks/useSEO';
 
 const Contact = () => {
+  useSEO({
+    title: 'Contact Us',
+    description: 'Get in touch with BeaconTrust for all your real estate needs in Kenya. Visit our office in Kisumu or contact us via phone, email, or WhatsApp.',
+    keywords: 'contact BeaconTrust, real estate contact Kenya, Kisumu real estate office, property consultation, real estate inquiry'
+  });
+
   const { toast } = useToast();
   const heroAnimation = useScrollAnimation();
   const contactAnimation = useScrollAnimation();
