@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
-import { MapPin, Bed, Bath, Square, Calendar, Phone } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { MapPin, Bed, Bath, Square, Calendar, Phone, Home, Landmark } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 // Import Kenyan images
@@ -18,6 +19,7 @@ import kenyaWildlife from '../assets/kenya-wildlife-1.jpg';
 const OngoingProjects = () => {
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation();
   const { elementRef: projectsRef, isVisible: projectsVisible } = useScrollAnimation();
+  const { elementRef: listingsRef, isVisible: listingsVisible } = useScrollAnimation();
 
   const projects = [
     {
@@ -113,6 +115,91 @@ const OngoingProjects = () => {
       features: ["CBD Location", "High-Speed Internet", "Conference Facilities", "Reception Services"]
     }
   ];
+
+  const propertyListings = {
+    houses: [
+      {
+        id: 1,
+        title: "Luxury Family Home",
+        location: "Milimani, Kisumu",
+        type: "Detached House",
+        status: "For Sale",
+        bedrooms: 4,
+        bathrooms: 3,
+        area: "250 sqm",
+        price: "KSh 8.5M",
+        image: kenyaVilla,
+        description: "Beautiful 4-bedroom family home with modern amenities and spacious compound.",
+        features: ["Private Garden", "Garage", "Modern Kitchen", "Security System", "Generator"]
+      },
+      {
+        id: 2,
+        title: "Modern Townhouse",
+        location: "Nyamasaria, Kisumu",
+        type: "Townhouse",
+        status: "For Sale",
+        bedrooms: 3,
+        bathrooms: 2,
+        area: "180 sqm",
+        price: "KSh 5.2M",
+        image: kenyaTownhouse,
+        description: "Contemporary 3-bedroom townhouse in a gated community with excellent amenities.",
+        features: ["Gated Community", "Swimming Pool", "Gym", "Children's Play Area"]
+      },
+      {
+        id: 3,
+        title: "Executive Bungalow",
+        location: "Riat Hills, Kisumu",
+        type: "Bungalow",
+        status: "For Sale",
+        bedrooms: 5,
+        bathrooms: 4,
+        area: "320 sqm",
+        price: "KSh 12.8M",
+        image: kenyaResidential,
+        description: "Spacious executive bungalow with panoramic lake views and premium finishes.",
+        features: ["Lake View", "Master En-suite", "Study Room", "Staff Quarters", "CCTV"]
+      }
+    ],
+    plots: [
+      {
+        id: 4,
+        title: "Prime Residential Plot",
+        location: "Tom Mboya Estate, Kisumu",
+        type: "Residential Plot",
+        status: "For Sale",
+        area: "0.5 Acres",
+        price: "KSh 3.2M",
+        image: kenyaLandscape,
+        description: "Well-located residential plot with ready title deed and access to utilities.",
+        features: ["Title Deed", "Water", "Electricity", "Good Access Road", "Fenced"]
+      },
+      {
+        id: 5,
+        title: "Commercial Plot - CBD",
+        location: "CBD, Kisumu",
+        type: "Commercial Plot",
+        status: "For Sale",
+        area: "0.25 Acres",
+        price: "KSh 15M",
+        image: kenyaCommercial,
+        description: "Strategic commercial plot in the heart of Kisumu's central business district.",
+        features: ["CBD Location", "High Traffic", "Mixed Use", "Investment Grade", "Prime Corner"]
+      },
+      {
+        id: 6,
+        title: "Agricultural Land",
+        location: "Ahero, Kisumu County",
+        type: "Agricultural Plot",
+        status: "For Sale",
+        area: "5 Acres",
+        price: "KSh 2.5M",
+        image: kenyaWildlife,
+        description: "Fertile agricultural land perfect for farming or future development.",
+        features: ["Fertile Soil", "Irrigation Ready", "Good Drainage", "Access Road", "Survey Done"]
+      }
+    ]
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -282,6 +369,219 @@ const OngoingProjects = () => {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Property Listings Section */}
+      <section 
+        ref={listingsRef}
+        className={`py-16 bg-gray-50 transition-all duration-1000 delay-500 ${
+          listingsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-blue-900 mb-4">
+              Property Listings & Advertisements
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Browse our curated selection of houses and plots available for purchase. 
+              Find your dream property today!
+            </p>
+          </div>
+
+          <Tabs defaultValue="houses" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-8">
+              <TabsTrigger value="houses" className="flex items-center space-x-2">
+                <Home className="h-4 w-4" />
+                <span>Houses</span>
+              </TabsTrigger>
+              <TabsTrigger value="plots" className="flex items-center space-x-2">
+                <Landmark className="h-4 w-4" />
+                <span>Plots</span>
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="houses">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                {propertyListings.houses.map((house, index) => (
+                  <Card 
+                    key={house.id} 
+                    className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <div className="relative">
+                      <img
+                        src={house.image}
+                        alt={house.title}
+                        className="w-full h-40 sm:h-48 object-cover transition-transform duration-300 hover:scale-105"
+                      />
+                      <Badge 
+                        className="absolute top-2 sm:top-4 right-2 sm:right-4 text-xs sm:text-sm bg-green-100 text-green-800 hover:bg-green-200 transition-colors duration-200"
+                      >
+                        {house.status}
+                      </Badge>
+                    </div>
+                    
+                    <CardHeader className="p-4 sm:p-6">
+                      <CardTitle className="text-base sm:text-lg font-semibold text-blue-900 hover:text-green-600 transition-colors duration-200">
+                        {house.title}
+                      </CardTitle>
+                      <CardDescription className="flex items-center space-x-1 text-gray-600 text-sm">
+                        <MapPin className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                        <span>{house.location}</span>
+                      </CardDescription>
+                    </CardHeader>
+
+                    <CardContent className="space-y-3 sm:space-y-4 p-4 sm:p-6 pt-0">
+                      <p className="text-xs sm:text-sm text-gray-700">{house.description}</p>
+                      
+                      <div className="grid grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
+                        <div className="space-y-1 sm:space-y-2">
+                          <div className="flex items-center space-x-1 sm:space-x-2">
+                            <Bed className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600 flex-shrink-0" />
+                            <span className="font-medium">Bedrooms:</span>
+                          </div>
+                          <span className="text-gray-600 text-xs sm:text-sm">{house.bedrooms}</span>
+                        </div>
+                        
+                        <div className="space-y-1 sm:space-y-2">
+                          <div className="flex items-center space-x-1 sm:space-x-2">
+                            <Bath className="h-3 w-3 sm:h-4 sm:w-4 text-green-600 flex-shrink-0" />
+                            <span className="font-medium">Bathrooms:</span>
+                          </div>
+                          <span className="text-gray-600 text-xs sm:text-sm">{house.bathrooms}</span>
+                        </div>
+                      </div>
+
+                      <div className="border-t pt-3 sm:pt-4">
+                        <div className="flex justify-between items-center mb-2 sm:mb-3">
+                          <span className="text-base sm:text-lg font-bold text-green-600">{house.price}</span>
+                          <span className="text-xs sm:text-sm text-gray-500">{house.area}</span>
+                        </div>
+                        
+                        <div className="flex flex-wrap gap-1 mb-3 sm:mb-4">
+                          {house.features.slice(0, 3).map((feature, idx) => (
+                            <Badge key={idx} variant="outline" className="text-xs hover:bg-blue-50 transition-colors duration-200">
+                              {feature}
+                            </Badge>
+                          ))}
+                          {house.features.length > 3 && (
+                            <Badge variant="outline" className="text-xs">
+                              +{house.features.length - 3} more
+                            </Badge>
+                          )}
+                        </div>
+
+                        <div className="flex space-x-2">
+                          <Button 
+                            className="flex-1 bg-blue-900 hover:bg-blue-800 transition-colors duration-200 text-xs sm:text-sm"
+                            size="sm"
+                          >
+                            <span className="hidden sm:inline">Contact Agent</span>
+                            <span className="sm:hidden">Contact</span>
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            className="hover:bg-green-50 hover:border-green-600 hover:text-green-600 transition-all duration-200 px-2 sm:px-3"
+                          >
+                            <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="plots">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                {propertyListings.plots.map((plot, index) => (
+                  <Card 
+                    key={plot.id} 
+                    className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <div className="relative">
+                      <img
+                        src={plot.image}
+                        alt={plot.title}
+                        className="w-full h-40 sm:h-48 object-cover transition-transform duration-300 hover:scale-105"
+                      />
+                      <Badge 
+                        className="absolute top-2 sm:top-4 right-2 sm:right-4 text-xs sm:text-sm bg-green-100 text-green-800 hover:bg-green-200 transition-colors duration-200"
+                      >
+                        {plot.status}
+                      </Badge>
+                    </div>
+                    
+                    <CardHeader className="p-4 sm:p-6">
+                      <CardTitle className="text-base sm:text-lg font-semibold text-blue-900 hover:text-green-600 transition-colors duration-200">
+                        {plot.title}
+                      </CardTitle>
+                      <CardDescription className="flex items-center space-x-1 text-gray-600 text-sm">
+                        <MapPin className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                        <span>{plot.location}</span>
+                      </CardDescription>
+                    </CardHeader>
+
+                    <CardContent className="space-y-3 sm:space-y-4 p-4 sm:p-6 pt-0">
+                      <p className="text-xs sm:text-sm text-gray-700">{plot.description}</p>
+                      
+                      <div className="grid grid-cols-1 gap-3 sm:gap-4 text-xs sm:text-sm">
+                        <div className="space-y-1 sm:space-y-2">
+                          <div className="flex items-center space-x-1 sm:space-x-2">
+                            <Square className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600 flex-shrink-0" />
+                            <span className="font-medium">Area:</span>
+                          </div>
+                          <span className="text-gray-600 text-xs sm:text-sm">{plot.area}</span>
+                        </div>
+                      </div>
+
+                      <div className="border-t pt-3 sm:pt-4">
+                        <div className="flex justify-between items-center mb-2 sm:mb-3">
+                          <span className="text-base sm:text-lg font-bold text-green-600">{plot.price}</span>
+                          <span className="text-xs sm:text-sm text-gray-500">{plot.type}</span>
+                        </div>
+                        
+                        <div className="flex flex-wrap gap-1 mb-3 sm:mb-4">
+                          {plot.features.slice(0, 3).map((feature, idx) => (
+                            <Badge key={idx} variant="outline" className="text-xs hover:bg-blue-50 transition-colors duration-200">
+                              {feature}
+                            </Badge>
+                          ))}
+                          {plot.features.length > 3 && (
+                            <Badge variant="outline" className="text-xs">
+                              +{plot.features.length - 3} more
+                            </Badge>
+                          )}
+                        </div>
+
+                        <div className="flex space-x-2">
+                          <Button 
+                            className="flex-1 bg-blue-900 hover:bg-blue-800 transition-colors duration-200 text-xs sm:text-sm"
+                            size="sm"
+                          >
+                            <span className="hidden sm:inline">Contact Agent</span>
+                            <span className="sm:hidden">Contact</span>
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            className="hover:bg-green-50 hover:border-green-600 hover:text-green-600 transition-all duration-200 px-2 sm:px-3"
+                          >
+                            <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </section>
 
