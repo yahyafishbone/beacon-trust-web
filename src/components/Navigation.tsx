@@ -47,11 +47,11 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
-            {/* <img
+            <img
               className="h-20 w-24 mr-4 rounded-sm"
               src="/logo.png"
               alt="logo"
-            /> */}
+            />
             <Link to="/" className="text-2xl font-bold text-blue-900">
               BeaconTrust
             </Link>
