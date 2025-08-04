@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
@@ -58,7 +57,7 @@ const Navigation = () => {
           </div>
 
           {/* Desktop navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex space-x-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}
