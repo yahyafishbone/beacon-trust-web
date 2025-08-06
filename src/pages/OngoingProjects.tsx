@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { useSEO } from '../hooks/useSEO';
+import { Link } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -469,15 +470,17 @@ const OngoingProjects = () => {
                         </div>
 
                         <div className="flex space-x-2">
-                          <Button
-                            className="flex-1 bg-blue-900 hover:bg-blue-800 transition-colors duration-200 text-xs sm:text-sm"
-                            size="sm"
-                          >
-                            <span className="hidden sm:inline">
-                              Contact Agent
-                            </span>
-                            <span className="sm:hidden">Contact</span>
-                          </Button>
+                          <Link to={`/property/${house.id}`}>
+                            <Button
+                              className="flex-1 bg-blue-900 hover:bg-blue-800 transition-colors duration-200 text-xs sm:text-sm"
+                              size="sm"
+                            >
+                              <span className="hidden sm:inline">
+                                View Details
+                              </span>
+                              <span className="sm:hidden">Details</span>
+                            </Button>
+                          </Link>
                           <Button
                             variant="outline"
                             size="sm"

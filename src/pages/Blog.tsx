@@ -167,7 +167,7 @@ const Blog = () => {
                         })}
                       </div>
                       <Link 
-                        to="#"
+                        to={`/blog/${post.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
                         className="text-blue-600 hover:text-blue-700 font-medium text-sm inline-flex items-center"
                       >
                         Read More
@@ -214,7 +214,7 @@ const Blog = () => {
                       })}
                     </div>
                     <Link 
-                      to="#"
+                      to={`/blog/${post.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
                       className="text-blue-600 hover:text-blue-700 font-medium text-sm inline-flex items-center transition-all duration-300 hover:translate-x-1 group/link"
                     >
                       Read More
