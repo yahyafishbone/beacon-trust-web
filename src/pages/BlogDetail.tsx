@@ -236,27 +236,42 @@ const BlogDetail = () => {
               </div>
 
               {/* Article Content */}
-              <div className="prose prose-lg max-w-none">
+              <div className="bg-card rounded-lg p-8 shadow-sm border">
                 <div 
                   dangerouslySetInnerHTML={{ __html: article.content }}
-                  className="article-content"
+                  className="article-content text-lg"
                 />
               </div>
 
               {/* Article Footer */}
-              <div className="border-t pt-8 mt-12">
-                <div className="flex items-center justify-between">
+              <div className="bg-muted/30 rounded-lg p-6 mt-8">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div className="flex space-x-4">
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" className="hover:bg-primary hover:text-primary-foreground">
                       <ThumbsUp className="h-4 w-4 mr-2" />
                       Like Article
                     </Button>
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" className="hover:bg-primary hover:text-primary-foreground">
                       <MessageCircle className="h-4 w-4 mr-2" />
                       Comment
                     </Button>
                   </div>
-                  <Button variant="outline" size="sm">
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="hover:bg-primary hover:text-primary-foreground"
+                    onClick={() => {
+                      if (navigator.share) {
+                        navigator.share({
+                          title: article.title,
+                          text: article.excerpt,
+                          url: window.location.href,
+                        });
+                      } else {
+                        navigator.clipboard.writeText(window.location.href);
+                      }
+                    }}
+                  >
                     <Share2 className="h-4 w-4 mr-2" />
                     Share
                   </Button>
@@ -341,15 +356,24 @@ const BlogDetail = () => {
             )}
 
             {/* CTA */}
-            <Card className="bg-blue-50">
+            <Card className="bg-primary/5 border-primary/20">
               <CardContent className="p-6 text-center">
-                <h3 className="font-semibold mb-2">Need Professional Help?</h3>
-                <p className="text-sm text-gray-600 mb-4">
+                <h3 className="font-semibold mb-2 text-foreground">Need Professional Help?</h3>
+                <p className="text-sm text-muted-foreground mb-4">
                   Get expert assistance with your property needs.
                 </p>
-                <Link to="/contact">
-                  <Button className="w-full">Contact Us</Button>
-                </Link>
+                <div className="space-y-2">
+                  <Link to="/contact">
+                    <Button className="w-full">Contact Us</Button>
+                  </Link>
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => window.open('https://wa.me/254700000000?text=Hi, I need assistance with property matters. I read your article: ' + article.title, '_blank')}
+                  >
+                    WhatsApp Us
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>

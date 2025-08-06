@@ -120,4 +120,46 @@ All colors MUST be HSL.
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* Blog article typography styles */
+  .article-content {
+    @apply text-foreground leading-relaxed;
+  }
+
+  .article-content h2 {
+    @apply text-2xl font-bold mt-8 mb-4 text-foreground border-b border-border pb-2;
+  }
+
+  .article-content h3 {
+    @apply text-xl font-semibold mt-6 mb-3 text-foreground;
+  }
+
+  .article-content p {
+    @apply mb-4 text-muted-foreground leading-7;
+  }
+
+  .article-content ul {
+    @apply mb-4 ml-6 space-y-2;
+  }
+
+  .article-content li {
+    @apply relative text-muted-foreground leading-6;
+  }
+
+  .article-content ul li::before {
+    content: "•";
+    @apply absolute -left-5 text-primary font-bold;
+  }
+
+  .article-content blockquote {
+    @apply border-l-4 border-primary bg-muted/50 p-4 my-6 italic;
+  }
+
+  .article-content strong {
+    @apply font-semibold text-foreground;
+  }
+
+  .article-content a {
+    @apply text-primary hover:underline;
+  }
 }

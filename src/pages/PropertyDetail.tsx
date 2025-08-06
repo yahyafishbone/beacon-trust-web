@@ -270,11 +270,18 @@ const PropertyDetail = () => {
                 </div>
                 
                 <div className="space-y-3">
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                  <Button 
+                    className="w-full bg-blue-600 hover:bg-blue-700"
+                    onClick={() => window.open('tel:+254700000000', '_self')}
+                  >
                     <Phone className="h-4 w-4 mr-2" />
                     Call Now
                   </Button>
-                  <Button variant="outline" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => window.open('mailto:info@beacontrust.co.ke?subject=Property Inquiry - ' + property.title, '_self')}
+                  >
                     <Mail className="h-4 w-4 mr-2" />
                     Send Email
                   </Button>
