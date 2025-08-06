@@ -1,13 +1,15 @@
 
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
-import { Calendar, Clock, ArrowRight, Search } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, Search, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useSEO } from '../hooks/useSEO';
 
 const Blog = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
   useSEO({
     title: 'Real Estate Blog',
     description: 'Latest insights on Kenya real estate market, property investment tips, legal guidance, and industry news from BeaconTrust experts.',
@@ -25,7 +27,8 @@ const Blog = () => {
       category: 'Legal',
       date: '2024-01-15',
       readTime: '8 min read',
-      featured: true
+      featured: true,
+      tags: ['land verification', 'due diligence', 'title deed', 'registry']
     },
     {
       title: 'Avoiding Real Estate Scams',
@@ -33,7 +36,8 @@ const Blog = () => {
       category: 'Buying Tips',
       date: '2024-01-10',
       readTime: '6 min read',
-      featured: true
+      featured: true,
+      tags: ['scams', 'fraud prevention', 'red flags', 'safety']
     },
     {
       title: 'Top Mistakes Diaspora Buyers Make',
@@ -41,7 +45,8 @@ const Blog = () => {
       category: 'Diaspora',
       date: '2024-01-08',
       readTime: '10 min read',
-      featured: true
+      featured: true,
+      tags: ['diaspora', 'overseas buyers', 'investment mistakes', 'pitfalls']
     },
     {
       title: 'Land Use Zoning in Kenya Explained',
@@ -49,7 +54,8 @@ const Blog = () => {
       category: 'Legal',
       date: '2024-01-05',
       readTime: '7 min read',
-      featured: false
+      featured: false,
+      tags: ['zoning', 'land use', 'classification', 'regulations']
     },
     {
       title: 'Property Management Best Practices',
@@ -57,7 +63,8 @@ const Blog = () => {
       category: 'Management',
       date: '2024-01-03',
       readTime: '9 min read',
-      featured: false
+      featured: false,
+      tags: ['property management', 'maintenance', 'returns', 'investment']
     },
     {
       title: 'Understanding Title Deeds in Kenya',
@@ -65,7 +72,8 @@ const Blog = () => {
       category: 'Legal',
       date: '2024-01-01',
       readTime: '12 min read',
-      featured: false
+      featured: false,
+      tags: ['title deeds', 'ownership', 'documentation', 'types']
     }
   ];
 
@@ -79,6 +87,27 @@ const Blog = () => {
       'Management': 'bg-orange-100 text-orange-800'
     };
     return colors[category as keyof typeof colors] || 'bg-gray-100 text-gray-800';
+  };
+
+  // Filter posts based on search query and category
+  const filteredPosts = useMemo(() => {
+    return blogPosts.filter(post => {
+      const matchesSearch = searchQuery === '' || 
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+      
+      const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
+      
+      return matchesSearch && matchesCategory;
+    });
+  }, [searchQuery, selectedCategory]);
+
+  const featuredPosts = filteredPosts.filter(post => post.featured);
+
+  const clearSearch = () => {
+    setSearchQuery('');
+    setSelectedCategory('All');
   };
 
   return (
@@ -114,8 +143,18 @@ const Blog = () => {
               <input
                 type="text"
                 placeholder="Search articles..."
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 hover:text-gray-600"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
             </div>
             
             {/* Category Filter */}
@@ -123,64 +162,100 @@ const Blog = () => {
               {categories.map((category) => (
                 <button
                   key={category}
-                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                    selectedCategory === category
+                      ? 'bg-blue-600 text-white'
+                      : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                  }`}
                 >
                   {category}
                 </button>
               ))}
             </div>
           </div>
+          
+          {/* Search Results Info */}
+          {(searchQuery || selectedCategory !== 'All') && (
+            <div className="mt-6 flex items-center justify-between bg-blue-50 p-4 rounded-lg">
+              <div className="flex items-center gap-2">
+                <span className="text-blue-800 font-medium">
+                  {filteredPosts.length} article{filteredPosts.length !== 1 ? 's' : ''} found
+                </span>
+                {searchQuery && (
+                  <span className="text-blue-600">
+                    for "{searchQuery}"
+                  </span>
+                )}
+                {selectedCategory !== 'All' && (
+                  <span className="text-blue-600">
+                    in {selectedCategory}
+                  </span>
+                )}
+              </div>
+              <button
+                onClick={clearSearch}
+                className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+              >
+                Clear filters
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
       {/* Featured Posts */}
-      <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div 
-            ref={featuredAnimation.elementRef}
-            className={`animate-on-scroll ${featuredAnimation.isVisible ? 'visible' : ''}`}
-          >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Featured Articles</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {blogPosts.filter(post => post.featured).map((post, index) => (
-                <article key={index} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 overflow-hidden">
-                  <div className="h-48 bg-gradient-to-br from-blue-500 to-blue-600"></div>
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className={`px-3 py-1 text-xs font-medium rounded-full ${getCategoryColor(post.category)}`}>
-                        {post.category}
-                      </span>
-                      <div className="flex items-center text-gray-500 text-sm">
-                        <Clock className="h-4 w-4 mr-1" />
-                        {post.readTime}
+      {featuredPosts.length > 0 && (
+        <section className="py-12 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div 
+              ref={featuredAnimation.elementRef}
+              className={`animate-on-scroll ${featuredAnimation.isVisible ? 'visible' : ''}`}
+            >
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                {searchQuery || selectedCategory !== 'All' ? 'Featured Results' : 'Featured Articles'}
+              </h2>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {featuredPosts.map((post, index) => (
+                  <article key={index} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 overflow-hidden">
+                    <div className="h-48 bg-gradient-to-br from-blue-500 to-blue-600"></div>
+                    <div className="p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <span className={`px-3 py-1 text-xs font-medium rounded-full ${getCategoryColor(post.category)}`}>
+                          {post.category}
+                        </span>
+                        <div className="flex items-center text-gray-500 text-sm">
+                          <Clock className="h-4 w-4 mr-1" />
+                          {post.readTime}
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{post.title}</h3>
+                      <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center text-gray-500 text-sm">
+                          <Calendar className="h-4 w-4 mr-1" />
+                          {new Date(post.date).toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                          })}
+                        </div>
+                        <Link 
+                          to={`/blog/${post.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
+                          className="text-blue-600 hover:text-blue-700 font-medium text-sm inline-flex items-center"
+                        >
+                          Read More
+                          <ArrowRight className="ml-1 h-4 w-4" />
+                        </Link>
                       </div>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{post.title}</h3>
-                    <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center text-gray-500 text-sm">
-                        <Calendar className="h-4 w-4 mr-1" />
-                        {new Date(post.date).toLocaleDateString('en-US', { 
-                          year: 'numeric', 
-                          month: 'long', 
-                          day: 'numeric' 
-                        })}
-                      </div>
-                      <Link 
-                        to={`/blog/${post.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
-                        className="text-blue-600 hover:text-blue-700 font-medium text-sm inline-flex items-center"
-                      >
-                        Read More
-                        <ArrowRight className="ml-1 h-4 w-4" />
-                      </Link>
-                    </div>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* All Posts */}
       <section className="py-12 bg-gray-50">
@@ -189,41 +264,78 @@ const Blog = () => {
             ref={allPostsAnimation.elementRef}
             className={`animate-on-scroll ${allPostsAnimation.isVisible ? 'visible' : ''}`}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">All Articles</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {blogPosts.map((post, index) => (
-                <article key={index} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-500 border border-gray-100 hover:scale-105 hover:bg-gradient-to-br hover:from-white hover:to-blue-50 group cursor-pointer">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className={`px-3 py-1 text-xs font-medium rounded-full transition-all duration-300 group-hover:scale-110 ${getCategoryColor(post.category)}`}>
-                      {post.category}
-                    </span>
-                    <div className="flex items-center text-gray-500 text-sm">
-                      <Clock className="h-4 w-4 mr-1 transition-all duration-300 group-hover:text-blue-600 group-hover:scale-110" />
-                      {post.readTime}
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">
+              {searchQuery || selectedCategory !== 'All' ? 'Search Results' : 'All Articles'}
+            </h2>
+            
+            {filteredPosts.length === 0 ? (
+              <div className="text-center py-12">
+                <div className="text-gray-400 mb-4">
+                  <Search className="h-16 w-16 mx-auto" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">No articles found</h3>
+                <p className="text-gray-600 mb-4">
+                  Try adjusting your search terms or browse different categories.
+                </p>
+                <button
+                  onClick={clearSearch}
+                  className="text-blue-600 hover:text-blue-800 font-medium"
+                >
+                  Clear all filters
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {filteredPosts.map((post, index) => (
+                  <article key={index} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-500 border border-gray-100 hover:scale-105 hover:bg-gradient-to-br hover:from-white hover:to-blue-50 group cursor-pointer">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className={`px-3 py-1 text-xs font-medium rounded-full transition-all duration-300 group-hover:scale-110 ${getCategoryColor(post.category)}`}>
+                        {post.category}
+                      </span>
+                      <div className="flex items-center text-gray-500 text-sm">
+                        <Clock className="h-4 w-4 mr-1 transition-all duration-300 group-hover:text-blue-600 group-hover:scale-110" />
+                        {post.readTime}
+                      </div>
                     </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 transition-colors duration-300 group-hover:text-blue-700">{post.title}</h3>
-                  <p className="text-gray-600 mb-4 transition-colors duration-300 group-hover:text-gray-800">{post.excerpt}</p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center text-gray-500 text-sm">
-                      <Calendar className="h-4 w-4 mr-1 transition-all duration-300 group-hover:text-blue-600 group-hover:scale-110" />
-                      {new Date(post.date).toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                      })}
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 transition-colors duration-300 group-hover:text-blue-700">{post.title}</h3>
+                    <p className="text-gray-600 mb-4 transition-colors duration-300 group-hover:text-gray-800">{post.excerpt}</p>
+                    
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1 mb-4">
+                      {post.tags.slice(0, 3).map((tag, tagIndex) => (
+                        <span 
+                          key={tagIndex}
+                          className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded transition-colors group-hover:bg-blue-100 group-hover:text-blue-600"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                      {post.tags.length > 3 && (
+                        <span className="text-xs text-gray-400">+{post.tags.length - 3} more</span>
+                      )}
                     </div>
-                    <Link 
-                      to={`/blog/${post.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
-                      className="text-blue-600 hover:text-blue-700 font-medium text-sm inline-flex items-center transition-all duration-300 hover:translate-x-1 group/link"
-                    >
-                      Read More
-                      <ArrowRight className="ml-1 h-4 w-4 transition-all duration-300 group-hover/link:translate-x-1 group-hover/link:scale-110" />
-                    </Link>
-                  </div>
-                </article>
-              ))}
-            </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center text-gray-500 text-sm">
+                        <Calendar className="h-4 w-4 mr-1 transition-all duration-300 group-hover:text-blue-600 group-hover:scale-110" />
+                        {new Date(post.date).toLocaleDateString('en-US', { 
+                          year: 'numeric', 
+                          month: 'long', 
+                          day: 'numeric' 
+                        })}
+                      </div>
+                      <Link 
+                        to={`/blog/${post.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
+                        className="text-blue-600 hover:text-blue-700 font-medium text-sm inline-flex items-center transition-all duration-300 hover:translate-x-1 group/link"
+                      >
+                        Read More
+                        <ArrowRight className="ml-1 h-4 w-4 transition-all duration-300 group-hover/link:translate-x-1 group-hover/link:scale-110" />
+                      </Link>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
