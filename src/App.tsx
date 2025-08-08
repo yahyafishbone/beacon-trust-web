@@ -1,4 +1,3 @@
-
 import { Toaster } from "./components/ui/toaster";
 import { Toaster as Sonner } from "./components/ui/sonner";
 import { TooltipProvider } from "./components/ui/tooltip";
@@ -8,9 +7,9 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import WhyBeaconTrust from "./pages/WhyBeaconTrust";
-import ClientSegments from "./pages/ClientSegments";
-import Blog from "./pages/Blog";
-import BlogDetail from "./pages/BlogDetail";
+// import ClientSegments from "./pages/ClientSegments";
+// import Blog from "./pages/Blog";
+// import BlogDetail from "./pages/BlogDetail";
 import Contact from "./pages/Contact";
 import Quote from "./pages/Quote";
 import OngoingProjects from "./pages/OngoingProjects";
@@ -31,9 +30,9 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/why-beacontrust" element={<WhyBeaconTrust />} />
-          <Route path="/client-segments" element={<ClientSegments />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogDetail />} />
+          {/* <Route path="/client-segments" element={<ClientSegments />} /> */}
+          {/* <Route path="/blog" element={<Blog />} /> */}
+          {/* <Route path="/blog/:slug" element={<BlogDetail />} /> */}
           <Route path="/contact" element={<Contact />} />
           <Route path="/quote" element={<Quote />} />
           <Route path="/ongoing-projects" element={<OngoingProjects />} />

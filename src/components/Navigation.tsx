@@ -11,9 +11,9 @@ const Navigation = () => {
     { name: "About Us", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Why BeaconTrust", href: "/why-beacontrust" },
-    { name: "Client Segments", href: "/client-segments" },
+    // { name: "Client Segments", href: "/client-segments" },
     { name: "Ongoing Projects", href: "/ongoing-projects" },
-    { name: "Blog", href: "/blog" },
+    // { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ];
 
