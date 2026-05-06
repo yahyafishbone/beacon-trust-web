@@ -247,7 +247,7 @@ const OngoingProjects = () => {
     ],
     plots: [
       {
-        id: 4,
+        id: 1,
         title: "Prime Residential Plot",
         location: "Nyawara-Kisian, Kisumu",
         type: "Residential Plot",
@@ -266,7 +266,7 @@ const OngoingProjects = () => {
         ],
       },
       {
-        id: 5,
+        id: 2,
         title: "Prime Residential Plot",
         location: "Ojola-Kisian, Kisumu",
         type: "Residential Plot",
@@ -285,7 +285,7 @@ const OngoingProjects = () => {
         ],
       },
       {
-        id: 6,
+        id: 3,
         title: "Commercial/Residential Plot",
         location: "Chabera, Homa Bay County",
         type: "Commercial Plot",
