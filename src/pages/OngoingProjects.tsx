@@ -245,6 +245,7 @@ const OngoingProjects = () => {
         ],
       },
     ],
+    {
     plots: [
       {
         id: 1,
